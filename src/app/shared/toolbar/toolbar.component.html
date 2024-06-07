@@ -1,0 +1,32 @@
+<div class="menu-container">
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>arrow_drop_down</mat-icon></button>
+      <span>Workday App</span>
+      <span class="spacer"></span>
+      <span>User</span>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>Item 1</button>
+            <button mat-menu-item>Item 2</button>
+          </mat-menu>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+    <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav #snav>
+        <mat-nav-list>
+          @for (item of menuItems; track item) {
+            <a mat-list-item [routerLink]="item.path">{{item.title}}</a>
+          }
+        </mat-nav-list>
+      </mat-sidenav>
+        <router-outlet/>
+      <mat-sidenav-content>
+        <router-outlet/>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+
+  </div>
