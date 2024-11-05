@@ -1,1 +1,81 @@
-<p>workday works!</p>
+<app-add-workday/>
+
+<div class="flex">
+  <app-title [title]="'Workdays List Employee'"/> 
+
+  <p>Total horas: {{totalHours}}</p>
+
+  <button mat-fab extended color="accent" (click)="getLastWeek()">
+      Last
+  </button>
+  @if (currentWeek != dateFormater) {
+      <button mat-fab extended color="accent" (click)="getNextWeek()">
+          Next
+      </button>
+  }
+</div>
+
+@if (workdays().length != 0) {
+  <div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="shift">
+          <th mat-header-cell *matHeaderCellDef> Shift </th>
+          <td mat-cell *matCellDef="let element"> {{element.shift.descriptionEn}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="timeOfArrival">
+          <th mat-header-cell *matHeaderCellDef> Arribal </th>
+          <td mat-cell *matCellDef="let element"> {{element.timeOfArrival}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="departureTime">
+          <th mat-header-cell *matHeaderCellDef> Departure </th>
+          <td mat-cell *matCellDef="let element"> {{element.departureTime}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="totalHours">
+          <th mat-header-cell *matHeaderCellDef> Hours </th>
+          <td mat-cell *matCellDef="let element"> {{element.totalHours}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="approved">
+          <th mat-header-cell *matHeaderCellDef> Approved </th>
+          <td mat-cell *matCellDef="let element"> {{element.approved}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element">
+            
+            <button mat-fab extended color="primary" (click)="editWorkday(element.id)">
+              Edit
+            </button>
+
+            <button mat-fab extended color="warn" (click)="deleteWorkday(element.id)">
+              Delete
+            </button>
+            
+          </td>
+          
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+      
+  </div>
+}@else {
+  <app-title [title]="'No se han cargado horas esta semana!'"/> 
+}

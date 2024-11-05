@@ -1,20 +1,30 @@
-<title-component [title]='"Add Employee"'/>
 
-<form [formGroup]="form" class="flex flex-wrap justify-start">
-    <div class="w-1/8 p-2">
-       <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-       <input type="text" name="name" id="name" formControlName="name" class="mt-1 block w-full rounded-md border border-gray-500 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+  <app-title [title]="'Add Employee'" />
+
+  <form [formGroup]="form" class="form">
+
+    <div class="form-child">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" formControlName="name" placeholder="Ingrese un nombre"/>
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-hint>Nombre</mat-hint>
+      </mat-form-field>
     </div>
 
-    <div class="w-1/8 p-2">
-        <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
-        <input type="text" name="lastName" id="lastName" formControlName="lastName" class="mt-1 block w-full rounded-md border border-gray-500 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-     </div>
-
-    <div class="w-1/8 p-4">
-       <button (click)="addEmployee()" [disabled]="form.invalid" class="inline-flex justify-start py-1 px-3 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-         Enviar
-       </button>
+    <div class="form-child">
+      <mat-form-field appearance="outline">
+        <mat-label>Apellido</mat-label>
+        <input matInput type="text" formControlName="lastName" placeholder="Ingrese un apellido"/>
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-hint>Apellido</mat-hint>
+      </mat-form-field>
     </div>
-   </form>
 
+    <div class="form-child">
+      <button mat-fab extended color="accent" (click)="addEmployee()">
+        Enviar
+      </button>
+    </div>
+
+  </form>

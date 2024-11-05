@@ -17,7 +17,6 @@ export class EmployeeService {
   }
 
   addEmployee(employee: NewEmployee): Observable<Object> {
-    debugger
     return this.http.post('http://localhost:8080/assist-control/v1/employee', employee)
       .pipe(catchError(this.manejoErrores));
  }

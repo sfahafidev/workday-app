@@ -1,0 +1,12 @@
+.form {
+    display: flex !important;
+    flex-flow: row  !important;
+}
+
+.form-child {
+    padding: 0 25px 20px 0;
+}
+
+.icon-color {
+    color: white;
+}

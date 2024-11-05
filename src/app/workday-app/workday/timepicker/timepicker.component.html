@@ -1,0 +1,37 @@
+    <mat-form-field appearance="outline">
+      <mat-label>{{labelTitle}}</mat-label>
+
+      <input
+        matInput
+        type="text"
+        [ngxMatTimepicker]="timepicker"
+        [format]="24"
+        [required]="required"
+        readonly
+        
+      />
+    
+      <!--[formControl]="formControlItem"-->
+
+      <mat-icon
+        matPrefix
+        *ngIf="formControlItem.value && !formControlItem.disabled && !required"
+        (click)="onClear($event)"
+      >
+       close
+      </mat-icon>
+
+      <mat-icon
+        matSuffix
+        *ngIf="!formControlItem.disabled"
+        (click)="openFromIcon(timepicker)"
+      >
+       schedule
+      </mat-icon>
+
+    </mat-form-field>
+
+<ngx-mat-timepicker
+  #timepicker
+  [enableKeyboardInput]="true"
+></ngx-mat-timepicker>

@@ -1,1 +1,111 @@
-<p>add-workday works!</p>
+<app-title [title]="'Add Workday'" />
+
+<form [formGroup]="form" class="form">
+
+  <div class="form-child">
+    <mat-form-field appearance="outline">
+        <mat-label>Seleccione una fecha</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="form-child">
+    <mat-form-field appearance="outline">
+        <mat-label>Seleccione una jornada</mat-label>
+        <mat-select formControlName="codeShift">
+        <mat-option value="RS">Regular Shift</mat-option>
+        <mat-option value="O">Overtime</mat-option>
+        <mat-option value="DO">Day Off</mat-option>
+        <mat-option value="V">Vacation</mat-option>
+        </mat-select>
+        <mat-hint>Tipo de Jornada</mat-hint>
+    </mat-form-field>
+  </div>
+  
+  <div class="form-child">
+    <mat-form-field appearance="outline">
+      <mat-label>Seleccione hora entrada</mat-label>
+
+      <input
+        matInput
+        type="text"
+        [ngxMatTimepicker]="timepickerIn"
+        [format]="24"
+        [required]="required"
+        readonly
+        formControlName="timeOfArrival"
+      />
+      <mat-hint>Hora Entrada</mat-hint>
+
+      @if (!formControlItem.disabled) {
+        <mat-icon
+        matSuffix 
+        class="icon-color"
+        (click)="openFromIn(timepickerIn)"
+      >
+       schedule
+      </mat-icon>
+      }
+
+    </mat-form-field>
+  </div>
+
+  <div class="form-child">
+    <mat-form-field appearance="outline">
+      <mat-label>Seleccione hora salida</mat-label>
+
+      <input
+        matInput
+        type="text"
+        [ngxMatTimepicker]="timepickerOut"
+        [format]="24"
+        [required]="required"
+        readonly
+        formControlName="departureTime"
+      />
+      <mat-hint>Hora Salida</mat-hint>
+
+      @if (!formControlItem.disabled) {
+        <mat-icon
+        matSuffix
+        class="icon-color"
+        (click)="openFromOut(timepickerOut)"
+      >
+       schedule
+      </mat-icon>
+      }
+      
+
+    </mat-form-field>
+  </div>
+
+  <div class="form-child">
+    <mat-form-field appearance="outline">
+      <mat-label>ID</mat-label>
+      <input matInput type="text" formControlName="idEmployee"/>
+      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+      <mat-hint>ID Empleado</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div class="form-child">
+    <button mat-fab extended color="accent" (click)="addWorkday()">
+      Enviar
+    </button>
+  </div>
+
+</form>
+
+
+<ngx-mat-timepicker
+  #timepickerIn
+  [enableKeyboardInput]="true"
+></ngx-mat-timepicker>
+
+<ngx-mat-timepicker
+  #timepickerOut
+  [enableKeyboardInput]="true"
+></ngx-mat-timepicker>

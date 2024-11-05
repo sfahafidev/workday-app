@@ -1,3 +1,7 @@
+.container {
+    padding: 30px;
+}
+
 .spacer {
     flex: 1 1 auto;
 }
@@ -12,8 +16,8 @@
     right: 0;
 }
 
-.sidenav-container {
-    background-color: azure;
+.sidenav {
+    background-color: gray;
     color: black;
     flex: 1 0 auto;
 }
